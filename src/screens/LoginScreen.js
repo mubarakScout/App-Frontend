@@ -8,6 +8,7 @@ import {
   Dimensions,
   TextInput,
   TouchableOpacity,
+  Alert,
 } from 'react-native';
 import React, {useState} from 'react';
 import {verticalScale, horizontalScale, moderateScale} from '../../utils/Dim';
@@ -15,23 +16,29 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 // import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import {useNavigation} from '@react-navigation/native';
 import {StackActions} from '@react-navigation/native';
+import {useDispatch} from 'react-redux';
+import {update} from '../redux/user/userSlice';
+import BgImage from '../components/BgImage';
 const LoginScreen = () => {
   const [userName, setUserName] = useState('');
   const [userPassword, setUserPassword] = useState('');
   const [passtHide, setPassHide] = useState(true);
   const navigation = useNavigation();
+  const dispatch = useDispatch();
 
   function handleLogin() {
     // navigation.navigate('DrawerNavigator');
-    navigation.dispatch(StackActions.replace('DrawerNavigator'));
+    if (userName.length > 0 && userPassword.length > 0) {
+      dispatch(update({name: userName}));
+      navigation.dispatch(StackActions.replace('DrawerNavigator'));
+    } else {
+      Alert.alert('Username or password is incorrect!');
+    }
   }
 
   return (
     <SafeAreaView style={styles.mainContainer}>
-      <ImageBackground
-        source={require('../../assets/Camp.png')}
-        resizeMode="cover"
-        style={styles.image}></ImageBackground>
+      <BgImage op={0.1} />
 
       {/* top green container */}
       <View style={styles.greenContainer} />
@@ -148,16 +155,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  image: {
-    position: 'absolute',
-    flex: 1,
-    justifyContent: 'center',
-    height: verticalScale(400),
-    width: Dimensions.get('window').width + 100,
-    bottom: verticalScale(0),
-    left: horizontalScale(-100),
-    opacity: 0.1,
-  },
+
   fieldContainer: {
     flex: 1,
     marginHorizontal: horizontalScale(40),

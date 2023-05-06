@@ -45,17 +45,21 @@ const BottomNavigator = () => {
   return (
     <Tab.Navigator
       screenOptions={{
+        tabBarActiveBackgroundColor: '#146C38',
+
         headerShown: false,
         tabBarShowLabel: false,
         tabBarStyle: {
-          position: 'absolute',
-          bottom: verticalScale(25),
-          left: horizontalScale(20),
-          right: horizontalScale(20),
+          // position: 'absolute',
+          // bottom: verticalScale(25),
+          // left: horizontalScale(20),
+          // right: horizontalScale(20),
           elevation: 3,
-          backgroundColor: '#146C38',
-          borderRadius: moderateScale(15),
+          backgroundColor: 'white',
+          // borderRadius: moderateScale(15),
           height: verticalScale(90),
+          // justifyContent:'center',
+          // alignItems:'center'
         },
       }}>
       <Tab.Screen
@@ -69,6 +73,7 @@ const BottomNavigator = () => {
                   alignItems: 'center',
                   justifyContent: 'center',
                   top: verticalScale(10),
+                  // backgroundColor: 'red',
                 }}>
                 <Image
                   source={require('../../../assets/bottomIcons/home.png')}
@@ -79,7 +84,13 @@ const BottomNavigator = () => {
                     tintColor: focused ? 'white' : 'black',
                   }}
                 />
-                <Text style={{color: focused ? 'white' : 'black'}}>Home</Text>
+                <Text
+                  style={{
+                    color: focused ? 'white' : 'black',
+                    fontSize: moderateScale(13),
+                  }}>
+                  Home
+                </Text>
               </View>
             );
           },
@@ -109,6 +120,7 @@ const BottomNavigator = () => {
                 <Text
                   style={{
                     color: focused ? 'white' : 'black',
+                    fontSize: moderateScale(13),
                   }}>
                   Gallery
                 </Text>
@@ -139,8 +151,8 @@ const BottomNavigator = () => {
         }}
       />
       <Tab.Screen
-        name="Profile"
-        component={ProfileScreen}
+        name="Notification"
+        component={NotificationScreen}
         options={{
           tabBarIcon: ({focused}) => {
             return (
@@ -162,6 +174,7 @@ const BottomNavigator = () => {
                 <Text
                   style={{
                     color: focused ? 'white' : 'black',
+                    fontSize: moderateScale(13),
                   }}>
                   Notification
                 </Text>
@@ -171,8 +184,8 @@ const BottomNavigator = () => {
         }}
       />
       <Tab.Screen
-        name="Notification"
-        component={NotificationScreen}
+        name="User"
+        component={ProfileScreen}
         options={{
           tabBarIcon: ({focused}) => {
             return (
@@ -191,7 +204,11 @@ const BottomNavigator = () => {
                     tintColor: focused ? 'white' : 'black',
                   }}
                 />
-                <Text style={{color: focused ? 'white' : 'black'}}>
+                <Text
+                  style={{
+                    color: focused ? 'white' : 'black',
+                    fontSize: moderateScale(13),
+                  }}>
                   Profile
                 </Text>
               </View>

@@ -11,6 +11,7 @@ import React, {useEffect} from 'react';
 import {verticalScale, horizontalScale, moderateScale} from '../../utils/Dim';
 import {useNavigation} from '@react-navigation/native';
 import {StackActions} from '@react-navigation/native';
+import BgImage from '../components/BgImage';
 const SplashScreen = () => {
   const navigation = useNavigation();
   useEffect(() => {
@@ -22,10 +23,7 @@ const SplashScreen = () => {
 
   return (
     <SafeAreaView style={styles.mainContainer}>
-      <ImageBackground
-        source={require('../../assets/Camp.png')}
-        resizeMode="cover"
-        style={styles.image}></ImageBackground>
+      <BgImage op={0.4} />
 
       <View
         style={{
@@ -71,15 +69,5 @@ const styles = StyleSheet.create({
   textHere: {
     justifyContent: 'center',
     alignItems: 'center',
-  },
-  image: {
-    position: 'absolute',
-    flex: 1,
-    justifyContent: 'center',
-    height: verticalScale(400),
-    width: Dimensions.get('window').width + 100,
-    bottom: verticalScale(0),
-    left: horizontalScale(-100),
-    opacity: 0.4,
   },
 });
